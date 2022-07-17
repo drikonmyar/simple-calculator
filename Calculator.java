@@ -17,7 +17,7 @@ public class Calculator {
 	double first;
 	double second;
 	double result;
-	String operation;
+	String operation=null;
 	String answer;
 
 	/**
@@ -122,6 +122,7 @@ public class Calculator {
 		btn_C.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				monitor.setText(null);
+				operation=null;
 			}
 		});
 		btn_C.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -164,8 +165,18 @@ public class Calculator {
 		JButton btn_point = new JButton(".");
 		btn_point.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String number=monitor.getText()+btn_point.getText();
-				monitor.setText(number);
+				String check=monitor.getText();
+				int flag=0;
+				for(int i=0;i<check.length();i++) {
+					if(check.charAt(i)=='.') {
+						flag=1;
+						break;
+					}
+				}
+				if(flag==0) {
+					String number=monitor.getText()+btn_point.getText();
+					monitor.setText(number);
+				}
 			}
 		});
 		btn_point.setFont(new Font("Tahoma", Font.BOLD, 17));
@@ -239,6 +250,9 @@ public class Calculator {
 				else if(operation=="%") {
 					result=first%second;
 					answer=String.format("%.2f", result);
+				}
+				else if(operation==null) {
+					answer=String.format("%.2f", second);
 				}
 				monitor.setText(answer);
 			}
