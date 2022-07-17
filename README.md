@@ -1,2 +1,2 @@
 # simple-calculator
- Simple calculator
+ Simple calculator with + - * / % functionalities
