@@ -230,6 +230,9 @@ public class Calculator {
 		JButton btn_equal = new JButton("=");
 		btn_equal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(operation==null) {
+					return;
+				}
 				second=Double.parseDouble(monitor.getText());
 				if(operation=="+") {
 					result=first+second;
@@ -251,10 +254,8 @@ public class Calculator {
 					result=first%second;
 					answer=String.format("%.2f", result);
 				}
-				else if(operation==null) {
-					answer=String.format("%.2f", second);
-				}
 				monitor.setText(answer);
+				operation=null;
 			}
 		});
 		btn_equal.setFont(new Font("Tahoma", Font.BOLD, 17));
